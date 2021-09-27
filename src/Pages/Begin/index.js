@@ -16,7 +16,7 @@ export default function Begin ({autentic}){
     return(
         <div> 
             <div>
-              <h1> welcome to Smart Learn List</h1> 
+              <h1 className="title"> welcome to Smart Learn List</h1> 
             </div>
             <div className="begin_buttons">
                 <Button size="large" variant='contained' color='primary' onClick={() => linkTo('/register')}>

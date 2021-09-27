@@ -23,17 +23,16 @@
 }
 
 .list_cards{
-    border: red solid;
     width: 90vw;
     display: flex;
     flex-wrap: wrap;
 }
 
-@media screen and(min-width: 700px) {
+@media screen and (min-width: 750px) {
 
     .list_cards{
-
+        width: 35vw;
     }
     
+    
 }
-
