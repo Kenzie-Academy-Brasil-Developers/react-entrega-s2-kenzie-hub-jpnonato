@@ -1,0 +1,19 @@
+
+.card {
+    background-color: beige;
+    color: #4b3817;
+    list-style: none;
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+    width: 30%;
+    max-width: 100px;
+    margin-left: 5px;
+    height: 100px;
+}
+
+.card li {
+    margin-top: 5px;
+    word-break: break-word;
+    font-size: 17px;
+}

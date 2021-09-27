@@ -1,0 +1,39 @@
+
+.input  input{
+    margin-right: 5px;
+}
+
+
+.input {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.input div {
+    margin-top: 0px;
+}
+
+
+.input section button {
+    margin-right: 15px;
+    width: 85px;
+    font-size: 12px;
+}
+
+.list_cards{
+    border: red solid;
+    width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media screen and(min-width: 700px) {
+
+    .list_cards{
+
+    }
+    
+}
+

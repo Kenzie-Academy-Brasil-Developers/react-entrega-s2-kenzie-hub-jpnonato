@@ -1,13 +1,13 @@
-import './style.css'
+import './styleLogin.css'
 import { TextField, Button } from '@material-ui/core'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
-import { useHistory,Link } from 'react-router-dom'
+import { useHistory,Redirect } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 import * as yup from 'yup'
 
-export default function FormLogin(){
+export default function FormLogin({autentic, setAutentic}){
 
 
     const[error,setError] = useState((x) => {
@@ -33,9 +33,19 @@ export default function FormLogin(){
     } = useForm({resolver: yupResolver(schema)})
 
     const handleForm = (data) => {
-        axios.post('https://kenziehub.herokuapp.com/sessions')
-        .then((response) => console.log(response)).catch((err) => setError(err.message))
-        // history.push(`/home/${data.name}`)
+        axios.post('https://kenziehub.herokuapp.com/sessions', data)
+        .then((response) => {
+            const{token, user} = response.data
+
+            localStorage.setItem('@Doit:token', JSON.stringify(token))
+            localStorage.setItem('@Doit:user', JSON.stringify(user.techs))
+            localStorage.setItem('@Doit:id', JSON.stringify(user.id))
+
+            setAutentic(true)
+
+            return history.push('/home')
+        })
+        .catch((err) => setError(err.message))  
     }
 
     return(
@@ -64,15 +74,14 @@ export default function FormLogin(){
                     fullWidth
                 />          
             </div>
-            <div>
+            <div className='buttons'>
                 <Button size="large" type='submit' variant='contained' color='primary'>
                     Login
                 </Button>
-                <Button size="large" variant='contained' color='primary' onClick={() => linkTo('/register')}>
-                    Fazer o registro
+                <Button size="large" variant='contained' color='warning' onClick={() => linkTo('/')}>
+                    Voltar
                 </Button>
                 <p>{ error === 'Request failed with status code 400' ? 'E-mail e/ou senha inválidos*' : '' }</p>
-                <p> {error} </p>
             </div>
         </form>
     )

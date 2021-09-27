@@ -1,7 +1,11 @@
   
 import FormRegister from "../../Components/FormRegister";
+import { Redirect } from "react-router-dom";
+export default function Register ({autentic}){
 
-export default function Register (){
+    if(autentic){
+        return <Redirect to='/'/>
+    }
 
     return(
         <>

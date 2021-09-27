@@ -1,11 +1,15 @@
 import './style.css'
 import { TextField, Button } from '@material-ui/core'
-import {useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import { useHistory, Link } from 'react-router-dom'
+import {useForm } from 'react-hook-form'
+import {yupResolver } from '@hookform/resolvers/yup'
+import { useHistory } from 'react-router-dom'
+import { useState } from 'react'
+import axios from 'axios'
 import * as yup from 'yup'
 
-export default function FormRegister(){
+export default function FormRegister({autentic}){
+
+    const [error, setError] = useState('') 
 
     const history = useHistory()
 
@@ -22,10 +26,8 @@ export default function FormRegister(){
             /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
             "Senha deve conter ao menos uma letra maiúscula, uma minúscula, um número e um caracter especial!")
           .required("Campo obrigatório*"),
-          confirm_password: yup.string()
-          .required("Você deve confirmar sua senha!")
-          .oneOf([yup.ref("password")], "Senha não confere com a senha criada acima!"),
-      })
+         
+    })
 
     const { 
         register,
@@ -34,23 +36,12 @@ export default function FormRegister(){
     } = useForm({resolver: yupResolver(schema)})
 
     const handleForm = (data) => {
-        console.log(data)
+        axios.post('https://kenziehub.herokuapp.com/users', data)
+        .then((response) => console.log(response)).catch((err) => setError(err.message))  
     }
 
     return(
-        <form onSubmit={handleSubmit(handleForm)}>
-             <div className='input'>
-                <TextField 
-                    label='Nome'
-                    margin='normal'
-                    variant='filled'
-                    color='primary'
-                    {...register('name')}
-                    error={!!errors.name}
-                    helperText={errors.name?.message}
-                     fullWidth
-                />          
-            </div>
+        <form className='register_form' onSubmit={handleSubmit(handleForm)}>
             <div className='input'>
                 <TextField 
                     label='E-mail'
@@ -60,6 +51,18 @@ export default function FormRegister(){
                     {...register('email')}
                     error={!!errors.email}
                     helperText={errors.email?.message}
+                    fullWidth
+                />          
+            </div>
+             <div className='input'>
+                <TextField 
+                    label='Nome'
+                    margin='normal'
+                    variant='filled'
+                    color='primary'
+                    {...register('name')}
+                    error={!!errors.name}
+                    helperText={errors.name?.message}
                     fullWidth
                 />          
             </div>
@@ -77,17 +80,41 @@ export default function FormRegister(){
             </div>
             <div className='input'>
                 <TextField 
-                    label='Confirmar sua senha'
+                    label='Bio'
                     margin='normal'
                     variant='filled'
                     color='primary'
-                    {...register('confirm_password')}
-                    error={!!errors.confirm_password}
-                    helperText={errors.confirm_password?.message}
+                    {...register('bio')}
+                    error={!!errors.bio}
+                    helperText={errors.bio?.message}
                     fullWidth
                 />          
             </div>
-            <div>
+            <div className='input'>
+                <TextField 
+                    label='Contato'
+                    margin='normal'
+                    variant='filled'
+                    color='primary'
+                    {...register('contact')}
+                    error={!!errors.contact}
+                    helperText={errors.contact?.message}
+                    fullWidth
+                />          
+            </div>
+            <div className='input'>
+                <TextField 
+                    label='Módulo do curso'
+                    margin='normal'
+                    variant='filled'
+                    color='primary'
+                    {...register('course_module')}
+                    error={!!errors.course_module}
+                    helperText={errors.course_module?.message}
+                    fullWidth
+                />          
+            </div>
+            <div className="buttons">
                 <Button size="large" type='submit' variant='contained' color='primary'>
                     Cadastrar
                 </Button>
@@ -98,3 +125,6 @@ export default function FormRegister(){
         </form>
     )
 }
+
+
+
