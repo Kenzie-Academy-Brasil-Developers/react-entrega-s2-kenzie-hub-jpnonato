@@ -10,9 +10,7 @@ import * as yup from 'yup'
 export default function FormLogin({autentic, setAutentic}){
 
 
-    const[error,setError] = useState((x) => {
-        return typeof x === 'string' ? 'E-mail ou Senha inválidos' : ''
-    })
+    const[error,setError] = useState('')
 
     const history = useHistory()
 
@@ -45,7 +43,9 @@ export default function FormLogin({autentic, setAutentic}){
 
             return history.push('/home')
         })
-        .catch((err) => setError(err.message))  
+        .catch((err) => setError(err.message)) 
+        
+        console.log(typeof error)
     }
 
     return(
@@ -82,7 +82,7 @@ export default function FormLogin({autentic, setAutentic}){
                 <Button size="large" variant='contained' color='warning' onClick={() => linkTo('/')}>
                     Voltar
                 </Button>
-                <p>{ error === 'Request failed with status code 400' ? 'E-mail e/ou senha inválidos*' : '' }</p>
+                <p>{ error === 'Request failed with status code 401' || error === 'Request failed with status code 400' ? 'E-mail e/ou senha inválidos*' : '' }</p>
             </div>
         </form>
     )
