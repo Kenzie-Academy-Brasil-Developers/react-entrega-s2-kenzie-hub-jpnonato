@@ -65,6 +65,7 @@ export default function FormLogin({autentic, setAutentic}){
             <div className='input'>
                 <TextField 
                     label='Senha'
+                    type='password'
                     margin='normal'
                     variant='filled'
                     color='primary'

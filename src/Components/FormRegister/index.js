@@ -6,10 +6,11 @@ import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 import * as yup from 'yup'
+import { object, string } from 'yup/lib/locale'
 
 export default function FormRegister({autentic}){
 
-    const [error, setError] = useState('') 
+    const [error, setError] = useState() 
 
     const history = useHistory()
 
@@ -37,7 +38,7 @@ export default function FormRegister({autentic}){
 
     const handleForm = (data) => {
         axios.post('https://kenziehub.herokuapp.com/users', data)
-        .then((response) => console.log(response)).catch((err) => setError(err.message))  
+        .then((_) =>  history.push('/login') )
     }
 
     return(
@@ -69,6 +70,7 @@ export default function FormRegister({autentic}){
             <div className='input'>
                 <TextField 
                     label='Senha'
+                    type='password'
                     margin='normal'
                     variant='filled'
                     color='primary'

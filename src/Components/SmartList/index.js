@@ -68,6 +68,12 @@ export default function SmartList() {
         console.log(tec)
             
     }
+
+    const returnToBegin = () => {
+
+        history.push('/')
+        localStorage.clear()
+    } 
      
        
     return(
@@ -91,7 +97,7 @@ export default function SmartList() {
                     <Button onClick={handleClick} size="large" type='submit' variant='contained' color='primary'>
                         Cadastrar
                     </Button>
-                    <Button size="large" variant='contained' color='warning' onClick={() => linkTo('/')}>
+                    <Button size="large" variant='contained' color='warning' onClick={returnToBegin}>
                     Sair
                     </Button>
                 </section>    
