@@ -26,12 +26,13 @@
     width: 90vw;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 @media screen and (min-width: 750px) {
 
     .list_cards{
-        width: 35vw;
+        width: 660px;
     }
     
     

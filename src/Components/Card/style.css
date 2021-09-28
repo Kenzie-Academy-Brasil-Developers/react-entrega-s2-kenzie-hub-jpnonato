@@ -6,8 +6,8 @@
     display: flex;
     padding: 0;
     flex-direction: column;
-    width: 30%;
-    max-width: 100px;
+    width: 42%;
+    max-width: 125px;
     margin-left: 5px;
     height: 100px;
 }
@@ -15,5 +15,5 @@
 .card li {
     margin-top: 5px;
     word-break: break-word;
-    font-size: 17px;
+    font-size: 15px;
 }
