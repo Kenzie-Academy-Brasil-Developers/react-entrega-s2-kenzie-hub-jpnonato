@@ -1,7 +1,8 @@
-import { TextField,Button } from '@material-ui/core'
+import { TextField,Button, Alert } from '@material-ui/core'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {yupResolver } from '@hookform/resolvers/yup'
+import { toast } from 'react-toastify'
 import {useHistory} from 'react-router-dom'
 import Card from '../Card'
 import * as yup from 'yup'
@@ -9,7 +10,7 @@ import  axios  from 'axios'
 import './styles.css'
 
 
-export default function SmartList() {
+export default function SmartList({setAutentic}) {
 
     const techs = JSON.parse(localStorage.getItem('@Doit:user'))
     const i = JSON.parse(localStorage.getItem('@Doit:id'))
@@ -43,7 +44,8 @@ export default function SmartList() {
         axios.post('https://kenziehub.herokuapp.com/users/techs', dat, {
                   headers : {Authorization: `Bearer ${token}`}})
            .then((response) => {
-               setTec([...tec, dat])
+               setTec([...tec, dat]);
+               toast.success('Tecnologia adicionada!')
             })
            .catch((e) => console.log(e)) 
      }
@@ -60,7 +62,7 @@ export default function SmartList() {
 
         axios.delete(`https://kenziehub.herokuapp.com/users/techs/${tech_id}`,  {
             headers : {Authorization: `Bearer ${token}`}})
-           .catch((e) => console.log(e))
+           .then((_) => toast.error('Tecnologia deletada!')).catch((e) => console.log(e))
 
         const item = tec.find((e) => e.id === tech_id)
         setTec(tec.filter((e) => e !== item))
@@ -70,14 +72,17 @@ export default function SmartList() {
     }
 
     const returnToBegin = () => {
-
-        history.push('/')
-        localStorage.clear()
+        setAutentic(false)
+        localStorage.clear();
+        history.push('/');
     } 
      
        
     return(
         <form onSubmit={handleSubmit(handleForm)}>
+            <div>
+
+            </div>
             <div className='input'>
                 <TextField 
                     label='Tecnologia'

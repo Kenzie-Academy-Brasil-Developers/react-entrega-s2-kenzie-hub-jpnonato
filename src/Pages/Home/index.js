@@ -1,7 +1,7 @@
 import SmartList from "../../Components/SmartList"
 import { Redirect } from 'react-router-dom'
 
-export default function Home ({autentic}){
+export default function Home ({autentic, setAutentic}){
 
     if(!autentic){
         return <Redirect to='/'/>
@@ -10,7 +10,7 @@ export default function Home ({autentic}){
     return(
         <div>
             <h1> Smart Learn List</h1>
-            <SmartList />
+            <SmartList setAutentic={setAutentic} />
         </div>
     )
 }

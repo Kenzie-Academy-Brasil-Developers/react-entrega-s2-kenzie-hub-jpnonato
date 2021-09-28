@@ -38,7 +38,9 @@ export default function FormRegister({autentic}){
 
     const handleForm = (data) => {
         axios.post('https://kenziehub.herokuapp.com/users', data)
-        .then((_) =>  history.push('/login') )
+        .then((_) =>  history.push('/login') ).catch((err) => setError(err) )
+
+        console.log(typeof error)
     }
 
     return(
@@ -123,6 +125,7 @@ export default function FormRegister({autentic}){
                 <Button size="large" variant='contained' color='warning' onClick={() => linkTo('/')}>
                   Voltar
                 </Button>
+                <p style={{color: 'red'}}>{ typeof error === 'object'  ? 'E-mail já cadastrado*' : '' }</p>
             </div>
         </form>
     )

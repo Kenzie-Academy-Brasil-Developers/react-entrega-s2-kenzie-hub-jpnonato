@@ -82,7 +82,7 @@ export default function FormLogin({autentic, setAutentic}){
                 <Button size="large" variant='contained' color='warning' onClick={() => linkTo('/')}>
                     Voltar
                 </Button>
-                <p>{ error === 'Request failed with status code 401' || error === 'Request failed with status code 400' ? 'E-mail e/ou senha inválidos*' : '' }</p>
+                <p style={{color: 'red'}}>{ error === 'Request failed with status code 401' || error === 'Request failed with status code 400' ? 'E-mail e/ou senha inválidos*' : '' }</p>
             </div>
         </form>
     )

@@ -35,7 +35,7 @@ export default function Routes(){
                 <Register autentic={autentic} />
             </Route>
             <Route path='/home'>
-                <Home autentic={autentic} />
+                <Home autentic={autentic} setAutentic={setAutentic} />
             </Route>
         </Switch>
         </>
