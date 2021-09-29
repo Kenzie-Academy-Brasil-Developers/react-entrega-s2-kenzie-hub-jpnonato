@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 import * as yup from 'yup'
+import { toast } from 'react-toastify'
 import { object, string } from 'yup/lib/locale'
 
 export default function FormRegister({autentic}){
