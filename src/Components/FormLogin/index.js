@@ -53,6 +53,7 @@ export default function FormLogin({autentic, setAutentic}){
             <div className='input'>
                 <TextField 
                     label='E-mail'
+                    placeholder='seu e-mail'
                     margin='normal'
                     variant='filled'
                     color='primary'
@@ -65,6 +66,7 @@ export default function FormLogin({autentic, setAutentic}){
             <div className='input'>
                 <TextField 
                     label='Senha'
+                    placeholder='sua senha'
                     type='password'
                     margin='normal'
                     variant='filled'
@@ -76,9 +78,9 @@ export default function FormLogin({autentic, setAutentic}){
                 />          
             </div>
             <div className='buttons'>
-                <Button size="large" type='submit' variant='contained' color='primary'>
-                    Login
-                </Button>
+                <button  type='submit'>
+                    Logar
+                </button>
                 <Button size="large" variant='contained' color='warning' onClick={() => linkTo('/')}>
                     Voltar
                 </Button>
